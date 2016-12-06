@@ -53,8 +53,10 @@ template<typename T>
 shared_ptr<T>::shared_ptr(T * ptr): ptr_(ptr), count_(new size_t(1)){}
  
 template<typename T>
-shared_ptr<T>::shared_ptr(shared_ptr const & other) : count_(other.count_), ptr_(other.ptr_) { 
-	(*count_) += count_ != nullptr;
+shared_ptr<T>::shared_ptr(shared_ptr const & other) : count_(other.count_), ptr_(other.ptr_) 
+{ 
+	if(count_ != nullptr) ++(*count_);
+	//(*count_) += count_ != nullptr;
 }
  
 template<typename T>
